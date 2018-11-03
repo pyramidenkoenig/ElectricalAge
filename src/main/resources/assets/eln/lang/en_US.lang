@@ -30,6 +30,7 @@ achievement.open_guide.desc=Open the wiki guide
 25A_Diode.name=25A Diode
 2x3_Rotating_Solar_Panel.name=2x3 Rotating Solar Panel
 2x3_Solar_Panel.name=2x3 Solar Panel
+3.2kV_Tungsten_Heating_Corp.name=3.2kV Tungsten Heating Corp
 50V_Battery_Charger.name=50V Battery Charger
 50V_Carbon_Incandescent_Light_Bulb.name=50V Carbon Incandescent Light Bulb
 50V_Compressor.name=50V Compressor
@@ -50,6 +51,7 @@ achievement.open_guide.desc=Open the wiki guide
 50V_Tungsten_Heating_Corp.name=50V Tungsten Heating Corp
 50V_Turbine.name=50V Turbine
 800V_Defence_Turret.name=800V Defence Turret
+800V_Tungsten_Heating_Corp.name=800V Tungsten Heating Corp
 AND_Chip.name=AND Chip
 Advanced_Chip.name=Advanced Chip
 Advanced_Electrical_Motor.name=Advanced Electrical Motor
@@ -241,12 +243,14 @@ Single-use_Battery.name=Single-use Battery
 Small_200V_Copper_Heating_Corp.name=Small 200V Copper Heating Corp
 Small_200V_Iron_Heating_Corp.name=Small 200V Iron Heating Corp
 Small_200V_Tungsten_Heating_Corp.name=Small 200V Tungsten Heating Corp
+Small_3.2kV_Tungsten_Heating_Corp.name=Small 3.2kV Tungsten Heating Corp
 Small_50V_Carbon_Incandescent_Light_Bulb.name=Small 50V Carbon Incandescent Light Bulb
 Small_50V_Copper_Heating_Corp.name=Small 50V Copper Heating Corp
 Small_50V_Economic_Light_Bulb.name=Small 50V Economic Light Bulb
 Small_50V_Incandescent_Light_Bulb.name=Small 50V Incandescent Light Bulb
 Small_50V_Iron_Heating_Corp.name=Small 50V Iron Heating Corp
 Small_50V_Tungsten_Heating_Corp.name=Small 50V Tungsten Heating Corp
+Small_800V_Tungsten_Heating_Corp.name=Small 800V Tungsten Heating Corp
 Small_Active_Thermal_Dissipator.name=Small Active Thermal Dissipator
 Small_Flashlight.name=Small Flashlight
 Small_Fuel_Burner.name=Small Fuel Burner
@@ -320,7 +324,7 @@ tile.eln.EnergyConverterElnToOtherMVUBlock.name=200V Electrical Age to other ene
 # ./src/main/java/mods/eln/i18n/I18N.java
 You_have_%1$_lives_left=You have %1$ lives left
 
-# ./src/main/java/mods/eln/item/BrushDescriptor.java
+# ./src/main/java/mods/eln/item/BrushDescriptor.kt
 Brush_is_dry=Brush is dry
 Can_paint_%1$_blocks=Can paint %1$ blocks
 
@@ -340,8 +344,6 @@ Cable_loss_factor\:_%1$=Cable loss factor: %1$
 # ./src/main/java/mods/eln/item/FuelBurnerDescriptor.kt
 Burn_unit_for_the_gas_heat_furnace.=Burn unit for the gas heat furnace.
 Produced_heat_power\:_=Produced heat power: 
-
-# ./src/main/java/mods/eln/item/HeatingCorpElement.java
 
 # ./src/main/java/mods/eln/item/LampDescriptor.java
 Bad=Bad
@@ -371,6 +373,8 @@ Solar_panel_upgrade=Solar panel upgrade
 State\:=State:
 Stored_Energy\:_%1$J_(%2$%)=Stored Energy: %1$J (%2$%)
 
+# ./src/main/java/mods/eln/item/electricalitem/ElectricalTool.java
+
 # ./src/main/java/mods/eln/item/regulator/RegulatorSlot.java
 
 # ./src/main/java/mods/eln/mechanical/Tachometer.kt
@@ -383,7 +387,7 @@ Hold_shift=Hold shift
 # ./src/main/java/mods/eln/misc/Version.java
 mod.name=Electrical Age
 
-# ./src/main/java/mods/eln/node/six/SixNodeDescriptor.java
+# ./src/main/java/mods/eln/node/transparent/TransparentNodeDescriptor.java
 
 # ./src/main/java/mods/eln/simplenode/energyconverter/EnergyConverterElnToOtherGui.java
 Input_power_is_limited_to_%1$W=Input power is limited to %1$W
@@ -516,8 +520,6 @@ Output_voltage_increases\nif_entities_are_moving_around.=Output voltage increase
 # ./src/main/java/mods/eln/sixnode/electricalentitysensor/ElectricalEntitySensorElement.java
 Entity_present=Entity present
 
-# ./src/main/java/mods/eln/sixnode/electricalfiredetector/ElectricalFireDetectorContainer.kt
-
 # ./src/main/java/mods/eln/sixnode/electricalfiredetector/ElectricalFireDetectorDescriptor.java
 Battery_powered_buzzer_\nactivated_in_presence_of_fire.=Battery powered buzzer \nactivated in presence of fire.
 Output_voltage_increases\nif_a_fire_has_been_detected.=Output voltage increases\nif a fire has been detected.
@@ -539,8 +541,6 @@ Provides_an_electrical_voltage\nwhich_is_proportional_to\nthe_intensity_of_dayli
 
 # ./src/main/java/mods/eln/sixnode/electricallightsensor/ElectricalLightSensorElement.java
 Light_level=Light level
-
-# ./src/main/java/mods/eln/sixnode/electricalmath/ElectricalMathContainer.java
 
 # ./src/main/java/mods/eln/sixnode/electricalmath/ElectricalMathDescriptor.java
 Applicable_boolean_operators\:=Applicable boolean operators:
@@ -567,8 +567,6 @@ Converts_Redstone_signal\nto_an_electrical_voltage.=Converts Redstone signal\nto
 
 # ./src/main/java/mods/eln/sixnode/electricalredstoneoutput/ElectricalRedstoneOutputDescriptor.java
 Converts_electrical_voltage\ninto_a_Redstone_signal.=Converts electrical voltage\ninto a Redstone signal.
-
-# ./src/main/java/mods/eln/sixnode/electricalredstoneoutput/ElectricalRedstoneOutputElement.java
 
 # ./src/main/java/mods/eln/sixnode/electricalrelay/ElectricalRelayDescriptor.java
 A_relay_is_an_electrical\ncontact_that_conducts_electric\ncurrent_or_not,_depending\nthe_actual_input_signal_voltage.=A relay is an electrical\ncontact that conducts electric\ncurrent or not, depending\nthe actual input signal voltage.
@@ -601,6 +599,8 @@ Provides_an_ideal_voltage_source\nwithout_energy_or_power_limitation.=Provides a
 # ./src/main/java/mods/eln/sixnode/electricalswitch/ElectricalSwitchDescriptor.java
 Can_break_an_electrical_circuit\ninterrupting_the_current.=Can break an electrical circuit\ninterrupting the current.
 
+# ./src/main/java/mods/eln/sixnode/electricalswitch/ElectricalSwitchElement.java
+
 # ./src/main/java/mods/eln/sixnode/electricaltimeout/ElectricalTimeoutDescriptor.java
 Upon_application_of_a_high_signal,\nthe_timer_maintains_the_output_high_for\na_configurable_interval._Can_be_re-triggered.=Upon application of a high signal,\nthe timer maintains the output high for\na configurable interval. Can be re-triggered.
 
@@ -614,6 +614,12 @@ The_time_interval_the\noutput_is_kept_high.=The time interval the\noutput is kep
 
 # ./src/main/java/mods/eln/sixnode/electricalvumeter/ElectricalVuMeterDescriptor.java
 Displays_the_value_of_a_signal.=Displays the value of a signal.
+
+# ./src/main/java/mods/eln/sixnode/electricalvumeter/ElectricalVuMeterElement.java
+
+# ./src/main/java/mods/eln/sixnode/electricalwatch/ElectricalWatchContainer.java
+
+# ./src/main/java/mods/eln/sixnode/electricalwatch/ElectricalWatchElement.java
 
 # ./src/main/java/mods/eln/sixnode/electricalweathersensor/ElectricalWeatherSensorDescriptor.java
 Clear\:_%1$V=Clear: %1$V
@@ -724,6 +730,8 @@ Coal_dust_slot=Coal dust slot
 
 # ./src/main/java/mods/eln/sixnode/resistor/ResistorElement.java
 
+# ./src/main/java/mods/eln/sixnode/resistor/ResistorGui.java
+
 # ./src/main/java/mods/eln/sixnode/thermalcable/ThermalCableDescriptor.java
 High_parallel_resistance\n_\=>_Low_power_dissipation.=High parallel resistance\n => Low power dissipation.
 Low_serial_resistance\n_\=>_High_conductivity.=Low serial resistance\n => High conductivity.
@@ -757,6 +765,10 @@ No_text_associated_to_this_beacon=No text associated to this beacon
 Set_beacon_name=Set beacon name
 
 # ./src/main/java/mods/eln/sixnode/wirelesssignal/rx/WirelessSignalRxGui.java
+
+# ./src/main/java/mods/eln/sixnode/wirelesssignal/tx/WirelessSignalTxElement.java
+
+# ./src/main/java/mods/eln/sixnode/wirelesssignal/tx/WirelessSignalTxGui.java
 
 # ./src/main/java/mods/eln/transparentnode/FuelGenerator.kt
 Fuel_level=Fuel level

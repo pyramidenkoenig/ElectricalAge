@@ -311,6 +311,8 @@ public class Eln {
     public static boolean noSymbols = false;
     public static boolean noVoltageBackground = false;
 
+    public static double maxSoundDistance = 16;
+
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
 
@@ -461,6 +463,8 @@ public class Eln {
 
         Eln.noSymbols = config.get("general", "noSymbols", false).getBoolean();
         Eln.noVoltageBackground = config.get("general", "noVoltageBackground", false).getBoolean();
+
+        Eln.maxSoundDistance = config.get("debug", "maxSoundDistance", 16.0).getDouble();
 
         config.save();
 
@@ -3274,6 +3278,46 @@ public class Eln {
                 MVU, 1200,// electricalNominalU, electricalNominalP,
                 1500,// electricalMaximalP)
                 highVoltageCableDescriptor);
+            sharedItem.addElement(completId, element);
+        }
+        {
+            subId = 12;
+            completId = subId + (id << 6);
+            element = new HeatingCorpElement(TR_NAME(Type.NONE, "Small 800V Tungsten Heating Corp"),// iconId,
+                // name,
+                HVU, 3600,// electricalNominalU, electricalNominalP,
+                4800,// electricalMaximalP)
+                veryHighVoltageCableDescriptor);
+            sharedItem.addElement(completId, element);
+        }
+        {
+            subId = 13;
+            completId = subId + (id << 6);
+            element = new HeatingCorpElement(TR_NAME(Type.NONE, "800V Tungsten Heating Corp"),// iconId,
+                // name,
+                HVU, 4812,// electricalNominalU, electricalNominalP,
+                6015,// electricalMaximalP)
+                veryHighVoltageCableDescriptor);
+            sharedItem.addElement(completId, element);
+        }
+        {
+            subId = 14;
+            completId = subId + (id << 6);
+            element = new HeatingCorpElement(TR_NAME(Type.NONE, "Small 3.2kV Tungsten Heating Corp"),// iconId,
+                // name,
+                VVU, 4000,// electricalNominalU, electricalNominalP,
+                6000,// electricalMaximalP)
+                veryHighVoltageCableDescriptor);
+            sharedItem.addElement(completId, element);
+        }
+        {
+            subId = 15;
+            completId = subId + (id << 6);
+            element = new HeatingCorpElement(TR_NAME(Type.NONE, "3.2kV Tungsten Heating Corp"),// iconId,
+                // name,
+                VVU, 12000,// electricalNominalU, electricalNominalP,
+                15000,// electricalMaximalP)
+                veryHighVoltageCableDescriptor);
             sharedItem.addElement(completId, element);
         }
 
